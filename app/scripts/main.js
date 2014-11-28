@@ -2,19 +2,20 @@
 
 var AvatarDesigner = React.createClass({
   render: function() {
+    var s = this.props.size;
     return (
-      <svg width="400" height="400">
-        <rect width="200" height="200" x="100" y="200" fill="OliveDrab"></rect>
-        <circle r="100" cx="200" cy="120" fill="PapayaWhip"></circle>
-        <circle r="20" cx="160" cy="100" fill="black"></circle>
-        <circle r="20" cx="240" cy="100" fill="black"></circle>
-        <rect width="50" height="10" x="175" y="160" fill="black"></rect>
+      <svg width={this.props.size} height={this.props.size}>
+        <rect width={s/2} height={s/2} x={s/4} y={s/2} fill="OliveDrab"></rect>
+        <circle r={s/4} cx={s/2} cy={0.3*s} fill="PapayaWhip"></circle>
+        <circle r={s/20} cx={0.4*s} cy={s/4} fill="black"></circle>
+        <circle r={s/20} cx={0.6*s} cy={s/4} fill="black"></circle>
+        <rect width={s/8} height={s/40} x={0.44*s} y={0.4*s} fill="black"></rect>
       </svg>
     );
   }
 });
 
 React.render(
-  <AvatarDesigner/>,
+  <AvatarDesigner size={400}/>,
   document.getElementById('avatar-designer')
 );
