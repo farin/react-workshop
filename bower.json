@@ -2,6 +2,7 @@
   "name": "avatar-designer",
   "private": true,
   "dependencies": {
-    "react": "~0.12.0"
+    "react": "~0.12.0",
+    "bootstrap": "~3.3.1"
   }
 }
