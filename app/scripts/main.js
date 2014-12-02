@@ -13,9 +13,9 @@ var DRESS_COLORS = [
 ];
 
 var defaultAvatar = {
-  skin: SKIN_COLORS[0].value,
-  dress: DRESS_COLORS[0].value,
-  name: ''
+  skin: localStorage['avatar.skin'] || SKIN_COLORS[0].value,
+  dress: localStorage['avatar.dress'] || DRESS_COLORS[0].value,
+  name: localStorage['avatar.name'] || ''
 }
 
 var AvatarDesigner = React.createClass({
@@ -49,6 +49,7 @@ var AvatarForm = React.createClass({
     var newState = {};
     newState[prop] = event.target.value;
     designer.setState(newState);
+    localStorage['avatar.'+prop] = event.target.value;
   },
 
   render: function() {
