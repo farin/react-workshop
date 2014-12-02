@@ -24,6 +24,12 @@ var AvatarDesigner = React.createClass({
     return defaultAvatar;
   },
 
+  onAvatarChange: function(ev_name, args) {
+    var newState = {};
+    newState[args.property] = args.value;
+    this.setState(newState);
+  },
+
   render: function() {
     var s = this.props.size,
         fontSize = parseInt(0.065 * s),
@@ -46,10 +52,10 @@ var AvatarDesigner = React.createClass({
 var AvatarForm = React.createClass({
 
   onPropertyChange: function(prop, ev) {
-    var newState = {};
-    newState[prop] = event.target.value;
-    designer.setState(newState);
-    localStorage['avatar.'+prop] = event.target.value;
+    EventDispatcher.emit('avatarChange', {
+      property: prop,
+      value: ev.target.value
+    });
   },
 
   render: function() {
@@ -72,7 +78,12 @@ var designer = React.render(
   document.getElementById('avatar-designer')
 );
 
-React.render(
+var form = React.render(
   <AvatarForm/>,
   document.getElementById('avatar-form')
 );
+
+EventDispatcher.register('avatarChange', designer, designer.onAvatarChange);
+EventDispatcher.register('avatarChange', this, function(ev_name, args) {
+  localStorage['avatar.'+args.property] = args.value;
+});
