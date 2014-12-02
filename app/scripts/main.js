@@ -48,22 +48,12 @@ var AvatarForm = React.createClass({
   render: function() {
     return (
       <form>
-        <div className="form-group">
-          <label>Skin color</label>
-          <select className="form-control" defaultValue={defaultAvatar.skin} onChange={this.onPropertyChange.bind(this, 'skin')}>
-            {SKIN_COLORS.map(function(color) {
-              return (<option key={color.value} value={color.value}>{color.name}</option>);
-            })}
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Dress color</label>
-          <select className="form-control" defaultValue={defaultAvatar.dress} onChange={this.onPropertyChange.bind(this, 'dress')}>
-            {DRESS_COLORS.map(function(color) {
-              return (<option key={color.value} value={color.value}>{color.name}</option>);
-            })}
-          </select>
-        </div>
+        <SelectWidget
+          label="Skin color" defaultValue={defaultAvatar.skin} options={SKIN_COLORS}
+          onChange={this.onPropertyChange.bind(this, 'skin')} />
+        <SelectWidget
+          label="Dress color" defaultValue={defaultAvatar.dress} options={DRESS_COLORS}
+          onChange={this.onPropertyChange.bind(this, 'dress')} />
       </form>
     );
   }
