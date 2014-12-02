@@ -28,7 +28,17 @@ window.SelectWidget = React.createClass({
 window.InputWidget = React.createClass({
   mixins: [FormControlMixin],
 
+  getInitialState: function() {
+    return {value: this.props.defaultValue};
+  },
+
+  onChange: function(ev) {
+    ev.target.value = ev.target.value.replace(/[^- \.\!\?\w]/g, ''); //some validation
+    this.setState({value: ev.target.value});
+    if (this.props.onChange) this.props.onChange(ev);
+  },
+
   renderFormControl: function() {
-    return <input className="form-control" defaultValue={this.props.defaultValue} onChange={this.props.onChange}/>;
+    return <input className="form-control" value={this.state.value} onChange={this.onChange}/>;
   }
 });
