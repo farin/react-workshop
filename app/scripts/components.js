@@ -14,3 +14,14 @@ window.SelectWidget = React.createClass({
     );
   }
 });
+
+window.InputWidget = React.createClass({
+  render: function() {
+    return (
+      <div className="form-group">
+        <label>{this.props.label}</label>
+        <input className="form-control" defaultValue={this.props.defaultValue} onChange={this.props.onChange}/>
+      </div>
+    );
+  }
+});
